@@ -1,0 +1,16 @@
+#!/usr/bin/python
+
+#check commit log match [Feature|Patch|Bug|Other]foo or Merge
+
+import sys
+import re
+
+logFile = file(sys.argv[1],'r');
+log = logFile.read()
+logFile.close()
+
+regex = re.compile("(\[(Feature|Patch|Bug|Other)\].+)|(Merge)")
+if (None == regex.match(log)):
+    print "Log error:"+log
+    sys.exit(1)
+sys.exit(0)
